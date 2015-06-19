@@ -1,0 +1,23 @@
+Outline
+	Block at center of screen
+	Floor is grid?
+		To realise movement
+	Red circles are around
+		If they touch you the game ends
+		They only respond when you get close
+		They move randomly
+		They move towards you if you get close
+	Blue circles
+		Good things
+		Give you points
+Issues
+	Proper preloading of sprites
+	Visibility checking
+Solved issues
+	How to handle edge of screen
+		In getCommand
+		Don't move if at edge
+	How to draw at arbitrary location on screen?
+		Alter drawsprite
+	How to draw lines?
+		Alter drawGrid

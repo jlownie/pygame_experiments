@@ -1,0 +1,127 @@
+Init
+	Constants
+		Map size is 1000m in x and y
+		Screen view distance is 100m
+		Maxspritesize is 5m
+		Screen size is 320 x 320
+		Frame rate = 50
+		Movement rate = 1 // m/second
+		Movement increment = movement rate/frame rate
+	Calculate frame rate wait
+		frame duration = 1000 / frame rate
+	Calculate scaling // ratio of distance to pixels
+		scaling = screen size / screen view distance
+	Initialise world objects array
+		It's empty
+Generate environment
+	Layout map
+		Read grid size from const or something
+		Put three blue circles on it
+			For i=1 to 3
+				Generate x and y coords that are within grid limits
+				Add them to circle
+				colour=blue
+				Add to world array
+		Put five red circles on it
+			For i=1 to 5
+				Generate x and y coords that are within grid limits
+				Add them to circle
+				colour=red
+				Add to world array
+		Put player on map
+			Generate x and y coords that are within grid limits
+Main loop
+	Store start time
+	Check what's in view for player
+		// Need to consider size of sprites
+		For each circle/world object
+			xDist = getDist(x, player.x)
+			yDist = getDist(y, player.y)
+			if xDist <= 50 AND yDist <= 50
+				drawMe = true
+			else
+				drawMe = false
+	Draw screen
+		Clear screen?
+		Draw player
+			drawSprite(player.sprite, 160, 160)
+		drawGrid(player.x, player.y)
+		For each circle/world object
+			if drawMe == true
+				drawSprite(object.sprite)
+		getCommand() // Poll for a command			
+	finishFrame(start time)
+	
+
+Functions
+	getDist(a, b)		
+		If a > b
+			dist = b-a
+		Else // x < player.x
+			dist=a-b
+		return dist
+	drawSprite(background, sprite, x y)
+		// x and y are screen coords of center of sprite
+		square = pygame.image.load("Square.png")
+		squareRect = square.get_rect()
+		squareRect.centerx = x
+		background.blit(text, textpos)
+	finishFrame(start time)
+		currentFrameDuration = current time-start time
+		if currentFrameDuration < frame duration
+		waitTime = frame duration - currentFrameDuration
+		sleep( waitTime )
+	drawGrid(x, y)
+		Draw lines at 5m marks
+		pygame.draw.lines(screen, color, closed, pointlist, thickness)
+			pointlist is a list of tuples, specifying a series of points, e.g. to draw a V you might use [(100,100), (150,200), (200,100)]
+	getCommand()
+		Get command from keyboard
+			If q has been pressed
+				Exit
+			If arrow is being pressed
+				If up arrow
+					if player.y <= map size
+						player.y += movement increment
+				If up and right arrow
+					if player.x <= map size
+						player.x += movement increment
+					if player.y <= map size
+						player.y += movement increment
+				If right arrow
+					if player.x <= map size
+						player.x += movement increment
+				If down and right arrow
+					if player.x <= map size
+						player.x += movement increment
+					if player.y <= 0
+						player.y -= movement increment
+				If down arrow
+					if player.y <= 0
+						player.y -= movement increment
+				If down and left arrow
+					if player.x <= 0
+						player.x -= movement increment
+					if player.y <= 0
+						player.y -= movement increment
+				If left arrow
+					if player.x <= 0
+						player.x -= movement increment
+				If up and left arrow
+					if player.x <= 0
+						player.x -= movement increment
+					if player.y <= 0
+						player.y += movement increment
+
+Data structures
+	Circle
+		x
+		y
+		drawMe
+		colour
+			Red or Blue
+		sprite
+	Player
+		x
+		y
+		sprite
