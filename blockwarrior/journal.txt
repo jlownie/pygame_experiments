@@ -1,0 +1,39 @@
+18/11/15
+Options for today
+	Clues for going to objectives
+	Swallow and accumulate objectives
+	Inertia
+	Procedurally generated background
+
+calculating screen x and y coords
+	player is always center of screen
+	calculate position relative to player, then convert?
+		get xdiff, ydiff
+			May be negative
+		multiply by scaling factor
+		Adjust by screen offset of player sprite
+		draw
+Scenario
+	Player coords are 20, 20
+	Object coords are 25, 30
+	Screen scaling factor is 2
+	Screen width and height is 200
+	Player coords is 100,100
+	Object coords
+		Diff
+			xdiff is 5
+			ydiff is 10
+			Difference is object - player
+			Positive difference means to the right or above
+			Negative difference means to the left or below
+		Introduce scaling factor
+			scaled xdiff is 10
+			scaled ydiff is 20
+		Calculate coords relative to player
+			Player coords + diff
+			However, y is inverted, so y = player coords - diff
+			x = 110
+			y = 80
+Coords test
+	pygame.draw.circle(canvas, pygame.Color('#FFFFFF'), [50,50], 20, 0)
+	circle appeared in top left of screen

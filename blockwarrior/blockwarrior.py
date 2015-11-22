@@ -100,8 +100,8 @@ def getDist(worldObjA, worldObjB):
 
 def drawSprite( canvas, sprite, objX, objY, playerX, playerY ):
 	# Work out the screen position relative to the player
-	screenX = (float(playerX) - objX) * scaleToScreen + screenSize/2
-	screenY = (float(playerY) - objY) * scaleToScreen + screenSize/2
+	screenX = screenSize/2 + ( objX - float(playerX)) * scaleToScreen
+	screenY = screenSize/2 - ( objY - float(playerY)) * scaleToScreen
 	
 	# Now draw it
 	spriteRect = sprite.get_rect()
@@ -116,31 +116,31 @@ def handleCommand(player):
 		return True
 	elif event.type == KEYDOWN and event.key == K_KP1:
 		# Down and left
-		player.x += float(moveIncrement)
+		player.x -= float(moveIncrement)
 		player.y -= float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP2:
 		# Down
 		player.y -= float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP3:
 		# Down and right
-		player.x -= float(moveIncrement)
+		player.x += float(moveIncrement)
 		player.y -= float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP4:
 		# Left
-		player.x += float(moveIncrement)
+		player.x -= float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP6:
 		# Right
-		player.x -= float(moveIncrement)
+		player.x += float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP7:
 		# Up and left
-		player.x += float(moveIncrement)
+		player.x -= float(moveIncrement)
 		player.y += float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP8:
 		# Up
 		player.y += float(moveIncrement)
 	elif event.type == KEYDOWN and event.key == K_KP9:
 		# Up and right
-		player.x -= float(moveIncrement)
+		player.x += float(moveIncrement)
 		player.y += float(moveIncrement)
 
 	return False
@@ -170,7 +170,7 @@ def mainLoop():
 				drawSprite(canvas, thisObj.sprite, 0, 0, 0, 0)
 			elif getDist(thisObj, player) <= viewDistance:
 				drawSprite(canvas, thisObj.sprite, thisObj.x, thisObj.y, player.x, player.y)
-		
+				
 		# Get and process player input
 		quitNow = handleCommand(player)
 		if quitNow:
