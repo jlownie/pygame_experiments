@@ -1,0 +1,39 @@
+Use cases
+	Question and answer
+	Question
+		Number
+			Sound
+			Text
+			English
+			Japanese
+			Picture
+				Things varying in quantity
+					Geometric shapes
+						Circles
+						Squares
+	Answer
+		Number character
+		Letters
+		Choice
+			Click on something
+Iteration 1
+	Generate a number
+		From 0-9
+	Print the japanese word for that number
+	Get a key from the user
+	Give feedback
+	Quit or start again
+Future iterations
+	Play a sound
+	Play the sound again
+	Several numbers
+	Track responses to numbers
+		Rate of correct answers
+		Time to answer
+	Track time and answers
+		Record progress and show it to user
+Other thoughts
+	Shi/yon, shichi/nana, rei/maru
+	Tracking knowlege and incorporating that into questions making questions harder over time
+		Presenting material to the user then asking questions
+		Keeping links from questions to materials
