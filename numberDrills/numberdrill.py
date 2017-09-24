@@ -3,7 +3,7 @@ import random, sys, tty, termios, pygame.mixer
 class question:
 	number = 0
 	text = ""
-	waveFile = ""
+	wavFile = ""
 
 def prepareQuestions():
 	counter = 0
@@ -13,6 +13,7 @@ def prepareQuestions():
 		newQuestion = question()
 		newQuestion.number = counter
 		newQuestion.text = numberText
+		newQuestion.wavFile = "./Resources/" + numberText + ".wav"
 		questionArray.append(newQuestion)
 		counter = counter + 1
 	
@@ -48,6 +49,8 @@ japaneseNumbers = prepareQuestions()
 while True:
 	thisQuestion = getQuestion()
 	print thisQuestion.text
+	thisSound = pygame.mixer.Sound(thisQuestion.wavFile)
+	thisSound.play()
 	
 	answer = getKeyPress()
 
